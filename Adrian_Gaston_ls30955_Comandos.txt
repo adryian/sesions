@@ -1,11 +1,33 @@
+﻿** CONGIGURACION ACCESO SSH **
+>>Creamos una clave
+ssh-keygen -t rsa -b 4096 -C "adrian.xxx@gmail.com"
+>>Creamos la un ssh-agent para que se autentique con nuestra key en background
+eval $(ssh-agent -s)
+>>Añadimos dicha clave al agent.
+ssh-add ~/.ssh/id_rsa
+>>Copiamos la clave en nuestro repositorio en github.com
+ - cat ~/.ssh/id_rsa.pub
+ - Vamos a our profile > Settings > Add ssh key > Pegamos la Key > Aceptamos
+>>Testeamos la connexión
+ssh -T git@github.com (Nos responderá con un "Hi <<tu nombre>> bla bla bla" si todo va bien.)
+
+
+** COMANDOS GIT HUB **
+>> Configuramos nuestros datos.
 git config --global user.name "adryian"
 git config --global user.email "adrian.gaston.perez@gmail.com"
 
+>>Creamos una carpeta contenedora del repositorio
 mkdir sesionsdump
 cd sesionsdump
+
+>>Iniciamos git
 git init
+
+>>Clonamos nuestro repositorio
 git clone https://github.com/adryian/sesions
 
+>>Creamos las ramas y añadimos los repositorios remotos
 git checkout -b sesion5
 git remote add sesion5 git@github.com:adryian/sesions.git
 git checkout -b sesion6
@@ -15,21 +37,36 @@ git remote add sesion7 git@github.com:adryian/sesions.git
 git checkout -b sesion8
 git remote add sesion8 git@github.com:adryian/sesions.git
 
+>>Comprobamos que estén bien creados los repositorios, listándolos
 git remote -v
+
+>>Miramos las ramas existentes y vemos en cual nos encontramos (para ver que ha funcionado).
 git branch
 
+>>Vamos a la rama sesion5
 git checkout sesion5
+
+>>Creamos el directorio y copiamos/creamos el contenido
 mkdir Sesion5
 cd Sesion5
 echo "este es el readme de la sesion 5" > Readme.txt
 <<copiamos en este directorio la práctica 5>>
+
+>>Añadimos todo el contenido para que git coja lo nuevo.
 git add --all
+>>Hacemos el comit para subir los cambios al repositorio remoto
 git commit -m "Subida sesion 5 con readme"
+>>Vamos a la rama master
 git checkout master
+>>Hacemos merge para añadir los cambios de la rama al master
 git merge sesion5 master
+>>Acualizamos
 git pull sesion5 master
+>>Subimos los cambios.
 git push
 
+
+>>Repetimos el proceso para las otras sesiones.
 git checkout Sesion6
 mkdir Sesion6
 cd Sesion6
@@ -66,6 +103,14 @@ git merge sesion8 master
 git pull sesion8 master
 git push
 
+>>Eliminamos las ramas remotas
+git push origin --delete sesion5
+git push origin --delete sesion6
+git push origin --delete sesion7
+git push origin --delete sesion8
+
+>>Eliminamos las ramas locales
+git branch -d *
 
 
 
