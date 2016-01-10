@@ -1,0 +1,72 @@
+git config --global user.name "adryian"
+git config --global user.email "adrian.gaston.perez@gmail.com"
+
+mkdir sesionsdump
+cd sesionsdump
+git init
+git clone https://github.com/adryian/sesions
+
+git checkout -b sesion5
+git remote add sesion5 git@github.com:adryian/sesions.git
+git checkout -b sesion6
+git remote add sesion6 git@github.com:adryian/sesions.git
+git checkout -b sesion7
+git remote add sesion7 git@github.com:adryian/sesions.git
+git checkout -b sesion8
+git remote add sesion8 git@github.com:adryian/sesions.git
+
+git remote -v
+git branch
+
+git checkout sesion5
+mkdir Sesion5
+cd Sesion5
+echo "este es el readme de la sesion 5" > Readme.txt
+<<copiamos en este directorio la práctica 5>>
+git add --all
+git commit -m "Subida sesion 5 con readme"
+git checkout master
+git merge sesion5 master
+git pull sesion5 master
+git push
+
+git checkout Sesion6
+mkdir Sesion6
+cd Sesion6
+echo "este es el readme de la sesion 6" > Readme.txt
+<<copiamos en este directorio la práctica 6>>
+git add --all
+git commit -m "Subida sesion 6 con readme"
+git checkout master
+git merge sesion6 master
+git pull sesion6 master
+git push
+
+git checkout Sesion7
+mkdir Sesion7
+cd Sesion7
+echo "este es el readme de la sesion 7" > Readme.txt
+<<copiamos en este directorio la práctica 7>>
+git add --all
+git commit -m "Subida sesion 7 con readme"
+git checkout master
+git merge sesion7 master
+git pull sesion7 master
+git push
+
+git checkout Sesion8
+mkdir Sesion8
+cd Sesion8
+echo "este es el readme de la sesion 8" > Readme.txt
+<<copiamos en este directorio la práctica 8>>
+git add --all
+git commit -m "Subida sesion 8 con readme"
+git checkout master
+git merge sesion8 master
+git pull sesion8 master
+git push
+
+
+
+
+
